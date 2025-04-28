@@ -77,5 +77,29 @@ namespace tetris
             PR = 1;
             PC = 5;
         }
+
+        private void TimeTetris_Tick(object sender, EventArgs e)
+        {
+            /* If the panel can fall no further */
+            if (F[PR + 1, PC] != Empty)
+            {
+                /* Top row reached */
+                if (PR == 1)
+                {
+                    TimeTetris.Enabled = false;
+                    MessageBox.Show("Game Over");
+                    return;
+                }
+                F[PR, PC] = PX;
+                CheckAll();
+                NextPanel();
+            }
+            else
+            {
+                /* If the panel can drop further */
+                PL[PX].Location = new Point(PL[PX].Location.X, PL[PX].Location.Y + 20);
+                PR += 1;
+            }
+        }
     }
 }

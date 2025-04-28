@@ -78,7 +78,7 @@ namespace tetris
             PC = 5;
         }
 
-        private void TimeTetris_Tick(object sender, EventArgs e)
+        private void TetrisTime_Tick(object sender, EventArgs e)
         {
             /* If the panel can fall no further */
             if (F[PR + 1, PC] != Empty)
@@ -86,7 +86,7 @@ namespace tetris
                 /* Top row reached */
                 if (PR == 1)
                 {
-                    TimeTetris.Enabled = false;
+                    TetrisTime.Enabled = false;
                     MessageBox.Show("Game Over");
                     return;
                 }

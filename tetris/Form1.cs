@@ -31,5 +31,51 @@ namespace tetris
 
         /* Generate and initialize random generator */
         private readonly Random r = new();
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            /* Occupy field */
+            for (int Z = 1; Z < 14; Z++)
+            {
+                F[Z, 0] = Edge;
+                for (int S = 1; S < 9; S++)
+                    F[Z, S] = Empty;
+                F[Z, 9] = Edge;
+            }
+
+            for (int S = 0; S < 10; S++)
+                F[14, S] = Edge;
+
+            /* Initialization */
+            Level = 1;
+            NextPanel();
+        }
+
+        private void NextPanel( )
+        {
+            int Color;
+            Panel p = new();
+
+            /* Add new panel to the generic list */
+            PL.Add(p);
+
+            /* Place new panel */
+            p.Location = new Point(105, 77);
+            p.Size = new Size(20, 20);
+
+            /* Color selection for new panel */
+            Color = r.Next(0, 8);
+            p.BackColor = ColorField[Color];
+
+            /* Add new panel to form */
+            Controls.Add(p);
+
+            /* Determine index for later access */
+            PX = PL.Count - 1;
+
+            /* Current row, column */
+            PR = 1;
+            PC = 5;
+        }
     }
 }

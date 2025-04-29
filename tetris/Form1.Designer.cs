@@ -29,107 +29,107 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            CmdLeft = new Button();
+            CmdDown = new Button();
+            CmdRight = new Button();
+            CmdPause = new Button();
             TimTetris = new System.Windows.Forms.Timer(components);
-            panel1 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
+            PanLeft = new Panel();
+            PanRight = new Panel();
+            PanBelow = new Panel();
             SuspendLayout();
             // 
-            // button1
+            // CmdLeft
             // 
-            button1.Location = new Point(11, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            CmdLeft.Location = new Point(45, 12);
+            CmdLeft.Name = "CmdLeft";
+            CmdLeft.Size = new Size(40, 28);
+            CmdLeft.TabIndex = 41;
+            CmdLeft.Text = "L";
+            CmdLeft.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // CmdDown
             // 
-            button2.Location = new Point(117, 43);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            CmdDown.Location = new Point(85, 47);
+            CmdDown.Name = "CmdDown";
+            CmdDown.Size = new Size(40, 28);
+            CmdDown.TabIndex = 42;
+            CmdDown.Text = "D";
+            CmdDown.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // CmdRight
             // 
-            button3.Location = new Point(219, 12);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 2;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            CmdRight.Location = new Point(125, 12);
+            CmdRight.Name = "CmdRight";
+            CmdRight.Size = new Size(40, 28);
+            CmdRight.TabIndex = 43;
+            CmdRight.Text = "R";
+            CmdRight.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // CmdPause
             // 
-            button4.Location = new Point(117, 395);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 3;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
+            CmdPause.Location = new Point(71, 361);
+            CmdPause.Name = "CmdPause";
+            CmdPause.Size = new Size(70, 28);
+            CmdPause.TabIndex = 44;
+            CmdPause.Text = "Pause";
+            CmdPause.UseVisualStyleBackColor = true;
             // 
             // TimTetris
             // 
             TimTetris.Enabled = true;
             TimTetris.Interval = 500;
             // 
-            // panel1
+            // PanLeft
             // 
-            panel1.BackColor = Color.Black;
-            panel1.Location = new Point(12, 95);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(10, 288);
-            panel1.TabIndex = 4;
+            PanLeft.BackColor = Color.Black;
+            PanLeft.Location = new Point(25, 77);
+            PanLeft.Name = "PanLeft";
+            PanLeft.Size = new Size(1, 260);
+            PanLeft.TabIndex = 47;
             // 
-            // panel2
+            // PanRight
             // 
-            panel2.BackColor = Color.Black;
-            panel2.Location = new Point(276, 95);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(10, 288);
-            panel2.TabIndex = 5;
+            PanRight.BackColor = Color.Black;
+            PanRight.Location = new Point(185, 77);
+            PanRight.Name = "PanRight";
+            PanRight.Size = new Size(1, 260);
+            PanRight.TabIndex = 49;
             // 
-            // panel3
+            // PanBelow
             // 
-            panel3.BackColor = Color.Black;
-            panel3.Location = new Point(12, 373);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(274, 10);
-            panel3.TabIndex = 6;
+            PanBelow.BackColor = Color.Black;
+            PanBelow.Location = new Point(25, 337);
+            PanBelow.Name = "PanBelow";
+            PanBelow.Size = new Size(160, 1);
+            PanBelow.TabIndex = 49;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 451);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            ClientSize = new Size(212, 413);
+            Controls.Add(PanBelow);
+            Controls.Add(PanRight);
+            Controls.Add(PanLeft);
+            Controls.Add(CmdPause);
+            Controls.Add(CmdRight);
+            Controls.Add(CmdDown);
+            Controls.Add(CmdLeft);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Tetris";
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button CmdLeft;
+        private Button CmdDown;
+        private Button CmdRight;
+        private Button CmdPause;
         private System.Windows.Forms.Timer TimTetris;
-        private Panel panel1;
-        private Panel panel2;
-        private Panel panel3;
+        private Panel PanLeft;
+        private Panel PanRight;
+        private Panel PanBelow;
     }
 }

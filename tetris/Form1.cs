@@ -201,5 +201,15 @@ namespace tetris
             }
             return result;
         }
+
+        private void CmdLeft_Click(object sender, EventArgs e)
+        {
+            if (F[PR, PC - 1] == Empty)
+            {
+                PL[PX].Location = new Point(
+                    PL[PX].Location.X - 20, PL[PX].Location.Y);
+                PC -= 1;
+            }
+        }
     }
 }

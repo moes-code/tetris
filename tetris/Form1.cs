@@ -234,5 +234,10 @@ namespace tetris
             CheckAll();
             NextPanel();
         }
+        
+        private void CmdPause_Click(object sender, EventArgs e)
+        {
+            TimTetris.Enabled = !TimTetris.Enabled;
+        }
     }
 }

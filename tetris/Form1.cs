@@ -78,7 +78,7 @@ namespace tetris
             PC = 5;
         }
 
-        private void TetrisTime_Tick(object sender, EventArgs e)
+        private void TimTetris_Tick(object sender, EventArgs e)
         {
             /* If the panel can fall no further */
             if (F[PR + 1, PC] != Empty)
@@ -86,7 +86,7 @@ namespace tetris
                 /* Top row reached */
                 if (PR == 1)
                 {
-                    TetrisTime.Enabled = false;
+                    TimTetris.Enabled = false;
                     MessageBox.Show("Game Over");
                     return;
                 }
@@ -100,6 +100,106 @@ namespace tetris
                 PL[PX].Location = new Point(PL[PX].Location.X, PL[PX].Location.Y + 20);
                 PR += 1;
             }
+        }
+
+        private void CheckAll()
+        {
+            bool Beside = false, Above = false;
+
+            /* Three identical panels next to each other ? */
+            for (int Z = 13; Z > 0; Z--)
+            {
+                for (int S = 1; S < 7; S++)
+                {
+                    Beside = CheckBeside(Z, S);
+                    if (Beside) break;
+                }
+                if (Beside) break;
+            }
+
+            /* Three identical panels on top of each other? */
+            for (int Z = 13; Z > 2; Z--)
+            {
+                for (int S = 1; S < 9; S++)
+                {
+                    Above = CheckAbove(Z, S);
+                    if (Above) break;
+                }
+                if (Above) break;
+            }
+
+            if (Beside || Above)
+            {
+                /* Faster */
+                Level += 1;
+                TimTetris.Interval = 5000 / (Level + 9);
+
+                /* It may be possible to remove one more row now */
+                CheckAll();
+            }
+        }
+
+        /* If three fields next to each other are occupied */
+        private bool CheckBeside(int Z, int S)
+        {
+            bool result = false;
+
+            if (F[Z, S] != Empty && F[Z, S+1] != Empty && F[Z, S+2] != Empty)
+            {
+                /* If three colors are equal */
+                if (PL[F[Z, S]].BackColor == PL[F[Z, S+1]].BackColor && PL[F[Z, S]].BackColor == PL[F[Z, S+2]].BackColor)
+                {
+                    for (int SX = S; SX < S + 3; SX++)
+                    {
+                        /* Delete Panel from the form */
+                        Controls.Remove(PL[F[Z, SX]]);
+
+                        /* Clear field */
+                        F[Z, SX] = Empty;
+
+                        /* Lower panels above the unloaded panel */
+                        int ZX = Z - 1;
+                        while (F[ZX, SX] != Empty)
+                        {
+                            PL[F[ZX, SX]].Location = new Point(
+                                PL[F[ZX, SX]].Location.X,
+                                PL[F[ZX, SX]].Location.Y + 20);
+
+                            /* Field reoccupied */
+                            F[ZX + 1, SX] = F[ZX, SX];
+                            F[ZX, SX] = Empty;
+                            ZX -= 1;
+                        }
+                    }
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        /* If three fields on top of each other are occupied */
+        private bool CheckAbove(int Z, int S)
+        {
+            bool result = false;
+
+            if (F[Z, S] != Empty && F[Z-1, S] != Empty && F[Z-2, S] != Empty)
+            {
+                /* If three colors are equal */
+                if (PL[F[Z, S]].BackColor == PL[F[Z-1, S]].BackColor && PL[F[Z, S]].BackColor == PL[F[Z-2, S]].BackColor)
+                {
+                    /* Unload 3 panels */
+                    for (int ZX = Z; ZX < Z - 3; ZX--)
+                    {
+                        /* Delete Panel from the form */
+                        Controls.Remove(PL[F[ZX, S]]);
+
+                        /* Clear field */
+                        F[ZX, S] = Empty;
+                    }
+                    result = true;
+                }
+            }
+            return result;
         }
     }
 }

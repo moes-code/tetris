@@ -221,5 +221,18 @@ namespace tetris
                 PC += 1;
             }
         }
+
+        private void CmdDown_Click(object sender, EventArgs e)
+        {
+            while (F[PR + 1, PC] == Empty)
+            {
+                PL[PX].Location = new Point(
+                    PL[PX].Location.X, PL[PX].Location.Y + 20);
+                PC += 1;
+            }
+            F[PR, PC] = PX;
+            CheckAll();
+            NextPanel();
+        }
     }
 }

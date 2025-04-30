@@ -133,7 +133,7 @@ namespace tetris
             {
                 /* Faster */
                 Level += 1;
-                TimTetris.Interval = 5000 / (Level + 9);
+                TimTetris.Interval = Math.Max(1, 5000 / (Level + 9));
 
                 /* It may be possible to remove one more row now */
                 CheckAll();

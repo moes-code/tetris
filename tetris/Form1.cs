@@ -235,7 +235,7 @@ namespace tetris
             {
                 PL[PX].Location = new Point(
                     PL[PX].Location.X, PL[PX].Location.Y + 20);
-                PC += 1;
+                PR += 1;
             }
             F[PR, PC] = PX;
             CheckAll();

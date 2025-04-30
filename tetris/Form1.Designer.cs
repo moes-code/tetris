@@ -47,6 +47,7 @@
             CmdLeft.TabIndex = 41;
             CmdLeft.Text = "L";
             CmdLeft.UseVisualStyleBackColor = true;
+            CmdLeft.Click += CmdLeft_Click;
             // 
             // CmdDown
             // 

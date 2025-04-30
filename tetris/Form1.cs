@@ -51,7 +51,7 @@ namespace tetris
             NextPanel();
         }
 
-        private void NextPanel( )
+        private void NextPanel()
         {
             int Color;
             Panel p = new();
@@ -97,7 +97,8 @@ namespace tetris
             else
             {
                 /* If the panel can drop further */
-                PL[PX].Location = new Point(PL[PX].Location.X, PL[PX].Location.Y + 20);
+                PL[PX].Location = new Point(
+                    PL[PX].Location.X, PL[PX].Location.Y + 20);
                 PR += 1;
             }
         }
@@ -144,10 +145,10 @@ namespace tetris
         {
             bool result = false;
 
-            if (F[Z, S] != Empty && F[Z, S+1] != Empty && F[Z, S+2] != Empty)
+            if (F[Z, S] != Empty && F[Z, S + 1] != Empty && F[Z, S + 2] != Empty)
             {
                 /* If three colors are equal */
-                if (PL[F[Z, S]].BackColor == PL[F[Z, S+1]].BackColor && PL[F[Z, S]].BackColor == PL[F[Z, S+2]].BackColor)
+                if (PL[F[Z, S]].BackColor == PL[F[Z, S + 1]].BackColor && PL[F[Z, S]].BackColor == PL[F[Z, S + 2]].BackColor)
                 {
                     for (int SX = S; SX < S + 3; SX++)
                     {
@@ -182,10 +183,10 @@ namespace tetris
         {
             bool result = false;
 
-            if (F[Z, S] != Empty && F[Z-1, S] != Empty && F[Z-2, S] != Empty)
+            if (F[Z, S] != Empty && F[Z - 1, S] != Empty && F[Z - 2, S] != Empty)
             {
                 /* If three colors are equal */
-                if (PL[F[Z, S]].BackColor == PL[F[Z-1, S]].BackColor && PL[F[Z, S]].BackColor == PL[F[Z-2, S]].BackColor)
+                if (PL[F[Z, S]].BackColor == PL[F[Z - 1, S]].BackColor && PL[F[Z, S]].BackColor == PL[F[Z - 2, S]].BackColor)
                 {
                     /* Unload 3 panels */
                     for (int ZX = Z; ZX < Z - 3; ZX--)
@@ -234,7 +235,7 @@ namespace tetris
             CheckAll();
             NextPanel();
         }
-        
+
         private void CmdPause_Click(object sender, EventArgs e)
         {
             TimTetris.Enabled = !TimTetris.Enabled;

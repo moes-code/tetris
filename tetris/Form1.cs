@@ -209,42 +209,52 @@ namespace tetris
             return result;
         }
 
-        private void CmdLeft_Click(object sender, EventArgs e)
+        /* Processing keyboard input */
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (F[PR, PC - 1] == Empty)
+            switch (keyData)
             {
-                PL[PX].Location = new Point(
-                    PL[PX].Location.X - 20, PL[PX].Location.Y);
-                PC -= 1;
-            }
-        }
+                /* Moves the panel to the left */
+                case Keys.Left:
+                    if (F[PR, PC - 1] == Empty)
+                    {
+                        PL[PX].Location = new Point(
+                            PL[PX].Location.X - 20, PL[PX].Location.Y);
+                        PC -= 1;
+                    }
+                    return true;
 
-        private void CmdRight_Click(object sender, EventArgs e)
-        {
-            if (F[PR, PC + 1] == Empty)
-            {
-                PL[PX].Location = new Point(
-                    PL[PX].Location.X + 20, PL[PX].Location.Y);
-                PC += 1;
-            }
-        }
+                /* Moves the panel to the right */
+                case Keys.Right:
+                    if (F[PR, PC + 1] == Empty)
+                    {
+                        PL[PX].Location = new Point(
+                            PL[PX].Location.X + 20, PL[PX].Location.Y);
+                        PC += 1;
+                    }
+                    return true;
 
-        private void CmdDown_Click(object sender, EventArgs e)
-        {
-            while (F[PR + 1, PC] == Empty)
-            {
-                PL[PX].Location = new Point(
-                    PL[PX].Location.X, PL[PX].Location.Y + 20);
-                PR += 1;
-            }
-            F[PR, PC] = PX;
-            CheckAll();
-            NextPanel();
-        }
+                /* Pushes the panel all the way down */
+                case Keys.Down:
+                    while (F[PR + 1, PC] == Empty)
+                    {
+                        PL[PX].Location = new Point(
+                            PL[PX].Location.X, PL[PX].Location.Y + 20);
+                        PR += 1;
+                    }
+                    F[PR, PC] = PX;
+                    CheckAll();
+                    NextPanel();
+                    return true;
 
-        private void CmdPause_Click(object sender, EventArgs e)
-        {
-            TimTetris.Enabled = !TimTetris.Enabled;
+                /* Pauses the game */
+                case Keys.P:
+                    TimTetris.Enabled = !TimTetris.Enabled;
+                    return true;
+
+                default:
+                    return base.ProcessCmdKey(ref msg, keyData);
+            }
         }
     }
 }

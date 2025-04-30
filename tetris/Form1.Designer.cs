@@ -29,55 +29,11 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            CmdLeft = new Button();
-            CmdDown = new Button();
-            CmdRight = new Button();
-            CmdPause = new Button();
             TimTetris = new System.Windows.Forms.Timer(components);
             PanLeft = new Panel();
             PanRight = new Panel();
             PanBelow = new Panel();
             SuspendLayout();
-            // 
-            // CmdLeft
-            // 
-            CmdLeft.Location = new Point(45, 12);
-            CmdLeft.Name = "CmdLeft";
-            CmdLeft.Size = new Size(40, 28);
-            CmdLeft.TabIndex = 41;
-            CmdLeft.Text = "L";
-            CmdLeft.UseVisualStyleBackColor = true;
-            CmdLeft.Click += CmdLeft_Click;
-            // 
-            // CmdDown
-            // 
-            CmdDown.Location = new Point(85, 47);
-            CmdDown.Name = "CmdDown";
-            CmdDown.Size = new Size(40, 28);
-            CmdDown.TabIndex = 42;
-            CmdDown.Text = "D";
-            CmdDown.UseVisualStyleBackColor = true;
-            CmdDown.Click += CmdDown_Click;
-            // 
-            // CmdRight
-            // 
-            CmdRight.Location = new Point(125, 12);
-            CmdRight.Name = "CmdRight";
-            CmdRight.Size = new Size(40, 28);
-            CmdRight.TabIndex = 43;
-            CmdRight.Text = "R";
-            CmdRight.UseVisualStyleBackColor = true;
-            CmdRight.Click += CmdRight_Click;
-            // 
-            // CmdPause
-            // 
-            CmdPause.Location = new Point(71, 361);
-            CmdPause.Name = "CmdPause";
-            CmdPause.Size = new Size(70, 28);
-            CmdPause.TabIndex = 44;
-            CmdPause.Text = "Pause";
-            CmdPause.UseVisualStyleBackColor = true;
-            CmdPause.Click += CmdPause_Click;
             // 
             // TimTetris
             // 
@@ -117,10 +73,6 @@
             Controls.Add(PanBelow);
             Controls.Add(PanRight);
             Controls.Add(PanLeft);
-            Controls.Add(CmdPause);
-            Controls.Add(CmdRight);
-            Controls.Add(CmdDown);
-            Controls.Add(CmdLeft);
             Name = "Form1";
             Text = "Tetris";
             Load += Form1_Load;
@@ -128,11 +80,6 @@
         }
 
         #endregion
-
-        private Button CmdLeft;
-        private Button CmdDown;
-        private Button CmdRight;
-        private Button CmdPause;
         private System.Windows.Forms.Timer TimTetris;
         private Panel PanLeft;
         private Panel PanRight;

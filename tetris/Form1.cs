@@ -35,16 +35,16 @@ namespace tetris
         private void Form1_Load(object sender, EventArgs e)
         {
             /* Occupy field */
-            for (int Z = 1; Z < 14; Z++)
+            for (int R = 1; R < 14; R++)
             {
-                F[Z, 0] = Edge;
-                for (int S = 1; S < 9; S++)
-                    F[Z, S] = Empty;
-                F[Z, 9] = Edge;
+                F[R, 0] = Edge;
+                for (int C = 1; C < 9; C++)
+                    F[R, C] = Empty;
+                F[R, 9] = Edge;
             }
 
-            for (int S = 0; S < 10; S++)
-                F[14, S] = Edge;
+            for (int C = 0; C < 10; C++)
+                F[14, C] = Edge;
 
             /* Initialization */
             Level = 1;
@@ -108,22 +108,22 @@ namespace tetris
             bool Beside = false, Above = false;
 
             /* Three identical panels next to each other ? */
-            for (int Z = 13; Z > 0; Z--)
+            for (int R = 13; R > 0; R--)
             {
-                for (int S = 1; S < 7; S++)
+                for (int C = 1; C < 7; C++)
                 {
-                    Beside = CheckBeside(Z, S);
+                    Beside = CheckBeside(R, C);
                     if (Beside) break;
                 }
                 if (Beside) break;
             }
 
             /* Three identical panels on top of each other? */
-            for (int Z = 13; Z > 2; Z--)
+            for (int R = 13; R > 2; R--)
             {
-                for (int S = 1; S < 9; S++)
+                for (int C = 1; C < 9; C++)
                 {
-                    Above = CheckAbove(Z, S);
+                    Above = CheckAbove(R, C);
                     if (Above) break;
                 }
                 if (Above) break;
@@ -141,35 +141,35 @@ namespace tetris
         }
 
         /* If three fields next to each other are occupied */
-        private bool CheckBeside(int Z, int S)
+        private bool CheckBeside(int R, int C)
         {
             bool result = false;
 
-            if (F[Z, S] != Empty && F[Z, S + 1] != Empty && F[Z, S + 2] != Empty)
+            if (F[R, C] != Empty && F[R, C + 1] != Empty && F[R, C + 2] != Empty)
             {
                 /* If three colors are equal */
-                if (PL[F[Z, S]].BackColor == PL[F[Z, S + 1]].BackColor && PL[F[Z, S]].BackColor == PL[F[Z, S + 2]].BackColor)
+                if (PL[F[R, C]].BackColor == PL[F[R, C + 1]].BackColor && PL[F[R, C]].BackColor == PL[F[R, C + 2]].BackColor)
                 {
-                    for (int SX = S; SX < S + 3; SX++)
+                    for (int CX = C; CX < C + 3; CX++)
                     {
                         /* Delete Panel from the form */
-                        Controls.Remove(PL[F[Z, SX]]);
+                        Controls.Remove(PL[F[R, CX]]);
 
                         /* Clear field */
-                        F[Z, SX] = Empty;
+                        F[R, CX] = Empty;
 
                         /* Lower panels above the unloaded panel */
-                        int ZX = Z - 1;
-                        while (F[ZX, SX] != Empty)
+                        int RX = R - 1;
+                        while (F[RX, CX] != Empty)
                         {
-                            PL[F[ZX, SX]].Location = new Point(
-                                PL[F[ZX, SX]].Location.X,
-                                PL[F[ZX, SX]].Location.Y + 20);
+                            PL[F[RX, CX]].Location = new Point(
+                                PL[F[RX, CX]].Location.X,
+                                PL[F[RX, CX]].Location.Y + 20);
 
                             /* Field reoccupied */
-                            F[ZX + 1, SX] = F[ZX, SX];
-                            F[ZX, SX] = Empty;
-                            ZX -= 1;
+                            F[RX + 1, CX] = F[RX, CX];
+                            F[RX, CX] = Empty;
+                            RX -= 1;
                         }
                     }
                     result = true;
@@ -179,23 +179,23 @@ namespace tetris
         }
 
         /* If three fields on top of each other are occupied */
-        private bool CheckAbove(int Z, int S)
+        private bool CheckAbove(int R, int C)
         {
             bool result = false;
 
-            if (F[Z, S] != Empty && F[Z - 1, S] != Empty && F[Z - 2, S] != Empty)
+            if (F[R, C] != Empty && F[R - 1, C] != Empty && F[R - 2, C] != Empty)
             {
                 /* If three colors are equal */
-                if (PL[F[Z, S]].BackColor == PL[F[Z - 1, S]].BackColor && PL[F[Z, S]].BackColor == PL[F[Z - 2, S]].BackColor)
+                if (PL[F[R, C]].BackColor == PL[F[R - 1, C]].BackColor && PL[F[R, C]].BackColor == PL[F[R - 2, C]].BackColor)
                 {
                     /* Unload 3 panels */
-                    for (int ZX = Z; ZX < Z - 3; ZX--)
+                    for (int RX = R; RX < R - 3; RX--)
                     {
                         /* Delete Panel from the form */
-                        Controls.Remove(PL[F[ZX, S]]);
+                        Controls.Remove(PL[F[RX, C]]);
 
                         /* Clear field */
-                        F[ZX, S] = Empty;
+                        F[RX, C] = Empty;
                     }
                     result = true;
                 }

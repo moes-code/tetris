@@ -57,6 +57,7 @@
             CmdDown.TabIndex = 42;
             CmdDown.Text = "D";
             CmdDown.UseVisualStyleBackColor = true;
+            CmdDown.Click += CmdDown_Click;
             // 
             // CmdRight
             // 
@@ -66,6 +67,7 @@
             CmdRight.TabIndex = 43;
             CmdRight.Text = "R";
             CmdRight.UseVisualStyleBackColor = true;
+            CmdRight.Click += CmdRight_Click;
             // 
             // CmdPause
             // 
@@ -75,11 +77,13 @@
             CmdPause.TabIndex = 44;
             CmdPause.Text = "Pause";
             CmdPause.UseVisualStyleBackColor = true;
+            CmdPause.Click += CmdPause_Click;
             // 
             // TimTetris
             // 
             TimTetris.Enabled = true;
             TimTetris.Interval = 500;
+            TimTetris.Tick += TimTetris_Tick;
             // 
             // PanLeft
             // 
@@ -119,6 +123,7 @@
             Controls.Add(CmdLeft);
             Name = "Form1";
             Text = "Tetris";
+            Load += Form1_Load;
             ResumeLayout(false);
         }
 

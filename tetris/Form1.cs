@@ -105,39 +105,45 @@ namespace tetris
 
         private void CheckAll()
         {
-            bool Beside = false, Above = false;
+            bool besideFound, aboveFound;
 
-            /* Three identical panels next to each other ? */
-            for (int R = 13; R > 0; R--)
+            do
             {
-                for (int C = 1; C < 7; C++)
+                besideFound = false;
+                aboveFound = false;
+
+                /* Check for three identical panels next to each other */
+                for (int R = 13; R > 0; R--)
                 {
-                    Beside = CheckBeside(R, C);
-                    if (Beside) break;
+                    for (int C = 1; C < 7; C++)
+                    {
+                        if (CheckBeside(R, C))
+                        {
+                            besideFound = true;
+                        }
+                    }
                 }
-                if (Beside) break;
-            }
 
-            /* Three identical panels on top of each other? */
-            for (int R = 13; R > 2; R--)
-            {
-                for (int C = 1; C < 9; C++)
+                /* Check for three identical panels on top of each other */
+                for (int R = 13; R > 2; R--)
                 {
-                    Above = CheckAbove(R, C);
-                    if (Above) break;
+                    for (int C = 1; C < 9; C++)
+                    {
+                        if (CheckAbove(R, C))
+                        {
+                            aboveFound = true;
+                        }
+                    }
                 }
-                if (Above) break;
-            }
 
-            if (Beside || Above)
-            {
-                /* Faster */
-                Level += 1;
-                TimTetris.Interval = Math.Max(1, 5000 / (Level + 9));
+                /* If any matches were found, update the level and timer */
+                if (besideFound || aboveFound)
+                {
+                    Level += 1;
+                    TimTetris.Interval = Math.Max(1, 5000 / (Level + 9));
+                }
 
-                /* It may be possible to remove one more row now */
-                CheckAll();
-            }
+            } while (besideFound || aboveFound); // Repeat until no more matches are found
         }
 
         /* If three fields next to each other are occupied */
@@ -189,7 +195,7 @@ namespace tetris
                 if (PL[F[R, C]].BackColor == PL[F[R - 1, C]].BackColor && PL[F[R, C]].BackColor == PL[F[R - 2, C]].BackColor)
                 {
                     /* Unload 3 panels */
-                    for (int RX = R; RX < R - 3; RX--)
+                    for (int RX = R; RX > R - 3; RX--)
                     {
                         /* Delete Panel from the form */
                         Controls.Remove(PL[F[RX, C]]);

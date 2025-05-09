@@ -59,9 +59,13 @@ namespace tetris
             /* Add new panel to the generic list */
             PL.Add(p);
 
-            /* Place new panel */
-            p.Location = new Point(105, 77);
-            p.Size = new Size(20, 20);
+            /* New panel size */
+            p.Size = new Size(50, 50);
+
+            /* New panel position */
+            int formWidth = this.ClientSize.Width;
+            int panelWidth = p.Width;
+            p.Location = new Point((formWidth - panelWidth) / 2, 170);
 
             /* Color selection for new panel */
             Color = r.Next(0, 8);
@@ -98,7 +102,7 @@ namespace tetris
             {
                 /* If the panel can drop further */
                 PL[PX].Location = new Point(
-                    PL[PX].Location.X, PL[PX].Location.Y + 20);
+                    PL[PX].Location.X, PL[PX].Location.Y + 50);
                 PR += 1;
             }
         }
@@ -170,7 +174,7 @@ namespace tetris
                         {
                             PL[F[RX, CX]].Location = new Point(
                                 PL[F[RX, CX]].Location.X,
-                                PL[F[RX, CX]].Location.Y + 20);
+                                PL[F[RX, CX]].Location.Y + 50);
 
                             /* Field reoccupied */
                             F[RX + 1, CX] = F[RX, CX];
@@ -219,7 +223,7 @@ namespace tetris
                     if (F[PR, PC - 1] == Empty)
                     {
                         PL[PX].Location = new Point(
-                            PL[PX].Location.X - 20, PL[PX].Location.Y);
+                            PL[PX].Location.X - 50, PL[PX].Location.Y);
                         PC -= 1;
                     }
                     return true;
@@ -229,7 +233,7 @@ namespace tetris
                     if (F[PR, PC + 1] == Empty)
                     {
                         PL[PX].Location = new Point(
-                            PL[PX].Location.X + 20, PL[PX].Location.Y);
+                            PL[PX].Location.X + 50, PL[PX].Location.Y);
                         PC += 1;
                     }
                     return true;
@@ -239,7 +243,7 @@ namespace tetris
                     while (F[PR + 1, PC] == Empty)
                     {
                         PL[PX].Location = new Point(
-                            PL[PX].Location.X, PL[PX].Location.Y + 20);
+                            PL[PX].Location.X, PL[PX].Location.Y + 50);
                         PR += 1;
                     }
                     F[PR, PC] = PX;
@@ -248,7 +252,7 @@ namespace tetris
                     return true;
 
                 /* Pauses the game */
-                case Keys.P:
+                case Keys.Space:
                     TimTetris.Enabled = !TimTetris.Enabled;
                     return true;
 

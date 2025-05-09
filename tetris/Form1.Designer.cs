@@ -44,35 +44,39 @@
             // PanLeft
             // 
             PanLeft.BackColor = Color.Black;
-            PanLeft.Location = new Point(25, 77);
+            PanLeft.Location = new Point(82, 170);
+            PanLeft.Margin = new Padding(3, 2, 3, 2);
             PanLeft.Name = "PanLeft";
-            PanLeft.Size = new Size(1, 260);
+            PanLeft.Size = new Size(10, 810);
             PanLeft.TabIndex = 47;
             // 
             // PanRight
             // 
             PanRight.BackColor = Color.Black;
-            PanRight.Location = new Point(185, 77);
+            PanRight.Location = new Point(1092, 170);
+            PanRight.Margin = new Padding(3, 2, 3, 2);
             PanRight.Name = "PanRight";
-            PanRight.Size = new Size(1, 260);
-            PanRight.TabIndex = 49;
+            PanRight.Size = new Size(10, 810);
+            PanRight.TabIndex = 10;
             // 
             // PanBelow
             // 
             PanBelow.BackColor = Color.Black;
-            PanBelow.Location = new Point(25, 337);
+            PanBelow.Location = new Point(92, 970);
+            PanBelow.Margin = new Padding(3, 2, 3, 2);
             PanBelow.Name = "PanBelow";
-            PanBelow.Size = new Size(160, 1);
+            PanBelow.Size = new Size(1000, 10);
             PanBelow.TabIndex = 49;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(212, 413);
+            ClientSize = new Size(1184, 1161);
             Controls.Add(PanBelow);
             Controls.Add(PanRight);
             Controls.Add(PanLeft);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Tetris";
             Load += Form1_Load;
